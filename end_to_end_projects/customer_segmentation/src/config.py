@@ -1,5 +1,0 @@
-DATA_FOLDER = 'data'
-RAW_DATA_FILE = 'data\mall_customers_raw.csv'
-PROCESSED_DATA_FILE = 'data\mall_customers_processed.csv'
-MODEL_OUTPUT = 'saved_entities\models'
-PARAMETERS_OUTPUT = 'saved_entities\parameters'
