@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+
 class ElbowMethod():
     def __init__(self,min_clusters,max_clusters,wcss=None):
         """[summary]
