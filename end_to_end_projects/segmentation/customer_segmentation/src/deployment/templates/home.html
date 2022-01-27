@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <center>
+            <h1> Classification for a Customer</h1>
+
+            <form method="POST",  action="{{url_for('predict')}}">
+                <label for="ID">Customer ID:</label><br>
+                <input type="number" id="pdfd" name="ID"><br>
+
+                <label for="Gender">Gender:</label><br>
+                <input type="radio" id="Male" name="Gender" value=Male>
+                <label for="Gender">Male</label>
+                <input type="radio" id="Female" name="Gender" value=Female>
+                <label for="Female">Female</label><br>
+
+                <label for="ID">Age:</label><br>
+                <input type="number" id="Age" name="Age"><br>
+
+                <label for="fname">Annual Income (k$):</label><br>
+                <input type="number" id="Income" name="Income"><br>
+
+                <label for="lname">Spending Score (1-100):</label><br>
+                <input type="range" id="Spending_score" name="Spending_score" min="0" max="100"><br>
+
+                <input type="submit" value="Submit"><br>
+            </form>
+
+            <br>
+            <br>
+            <p>For the customer with {{inputs}}, the cluster group is {{prediction}}</p>
+        </center>
+    </body>
+</html>
