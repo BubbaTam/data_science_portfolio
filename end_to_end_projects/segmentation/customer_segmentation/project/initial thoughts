@@ -1,0 +1,227 @@
+Company
+Product
+Releases
+Concerns
+
+
+
+
+Company (myself):
+- The value is to show competency with problem-solving, in the business context, using ML approaches. These projects are ideally to be shown as
+evidence to recruiters and possible job opportunities. [ add features that will help with this]
+
+
+Releases
+- release #1
+    - Data
+        - Features: gender, age, annual_income_(k$), spending_score_(1-100)
+        - 200 observations (currently no scalability issues but should this be planned for possible future )
+            - Questions:
+                - Am i picking out the signals needed for the problem
+                - This is all the data I have to possibly cluster our customers
+                - Are there opportunities create new signals (combining features, new data)
+    - questions to ask
+        - processes, constraints, domain knowledge
+
+
+
+import os
+DIRECTORY =('C:\\Users\\james\\OneDrive\\Desktop\\Data Science\\data_science_portfolio\\end_to_end_projects\\customer_segmentation')
+#from src.config import DIRECTORY
+os.getcwd()
+os.chdir(DIRECTORY)
+
+
+df = pd.read_csv(RAW_DATA_FILE)
+# hard copy 
+df_results = df.copy()
+df_results
+# data processing
+# quality of life 
+df_results.columns = [column.lower().replace(' ','_') for column in df_results.columns]
+continuous_var = ['age','annual_income_(k$)','spending_score_(1-100)']
+categorical_var = ['gender']
+features = ['gender','age','annual_income_(k$)','spending_score_(1-100)']
+# data transformations 
+ohe = OneHotEncoder(drop='first',sparse=False,dtype=int)
+# standard scaler
+scaler = MinMaxScaler()
+df_results.iloc[:,2:] = scaler.fit_transform(df_results.iloc[:,2:])
+# ohe.fit(df['Gender'].values)
+df_results['gender'] = ohe.fit_transform(df_results[['gender']])
+X = df_results.drop('customerid',axis=1)
+# x_train, x_test, y_train, y_test = train_test_split()
+# import sklearn.preprocessing.
+#df_results.to_csv(path_or_buf=os.path.join(DATA_FILE,"mall_customers_processed.csv"),index=False)
+
+
+
+#identify the points placed in cluster 
+# np.zero_like == returns an array with the same shape as the given object
+#sample_scores = np.zeros_like(DBSCAN_pred.labels_)
+
+#sample_scores[DBSCAN_pred.core_sample_indices_] = True
+# number of clusters 
+sample_scores = len(set(DBSCAN_pred)) - (1 if -1 in DBSCAN_pred else 0)
+
+
+def visualise_clusters(dataframe,title:str,x_label:str, y_label:str,num_clust:int,figsize:tuple=(12,6)):
+    plt.figure(figsize=figsize)
+    sns.scatterplot(x=dataframe[x_label],y=dataframe[y_label], hue=dataframe['kmeans'], 
+    palette=sns.color_palette('hls', num_clust))
+    plt.title(title)
+    plt.show()
+visualise_clusters(df_results,'kmean with 4 clusters','annual_income_(k$)','spending_score_(1-100)',4)
+
+
+
+# saving models 
+for column in model_predictions:
+    model_file = column
+    if not os.path.exists(fr"C:\Users\james\OneDrive\Desktop\Data Science\data_science_portfolio\end_to_end_projects\customer_segmentation\data\clustered_sets\{model_file}_datasets"):
+        os.mkdir(fr"C:\Users\james\OneDrive\Desktop\Data Science\data_science_portfolio\end_to_end_projects\customer_segmentation\data\clustered_sets\{model_file}_datasets")
+    for x in range(df_2[column].nunique()):
+        df_2[df_2[model_file] == x].iloc[:,:4].to_csv(fr"C:\Users\james\OneDrive\Desktop\Data Science\data_science_portfolio\end_to_end_projects\customer_segmentation\data\clustered_sets\{model_file}_datasets\{model_file}_{x}", index = False, header=True)
+
+
+
+@pd.api.extensions.register_dataframe_accessor("DataClean")
+class DataClean:
+    """ not complete"""
+    def __init__(self, pandas_obj):
+        self._obj = pandas_obj
+    #def __init__(self) -> None:
+     #   """
+     #   what needs to be included:
+     #   - missing data 
+     #  - unbalanced data 
+     #   """
+     #    super().__init__()
+    def csv_input(self,csv_file):
+        self.pd.read_csv(csv_file)
+    # dealing with categorical data
+    def clean_headers(df):
+        df.columns = [column.lower().replace(' ','_') for column in df.columns]
+    def ohe(df,feature):
+        """ currently with fit_transform"""
+        encoder = OneHotEncoder(drop='first',sparse=False,dtype=int)
+        df[feature] = encoder.fit_transform(df[[feature]])
+    def label_encoding(df,feature):
+        """ currently with fit_transform"""
+        encoder = LabelEncoder()
+        df[feature] = encoder.fit_transform(df[[feature]])
+    def ordinal_encoding(df,feature,ordering: list,sparse=False):
+        """ currently with fit_transform"""
+        encoder = OrdinalEncoder(categories = ordering, dtype='int',sparse=sparse)
+        df[feature] = encoder.fit_transform(df[[feature]])
+    # feature transformations
+    def min_max_scaler(df,features,save_scaler:bool):
+        """ currently with fit_transform"""
+        scaler = MinMaxScaler()
+        df[features] = scaler.fit
+        df[features] = scaler.transform(df[features])
+        if save_scaler == True:
+            pass
+            
+    def standardisation(df,features):
+        """ currently with fit_transform"""
+        scaler = StandardScaler()
+        df[features] = scaler.fit_transform(df[features])
+    def normalisation(df,features):
+        """ currently with fit_transform"""
+        scaler = Normalizer()
+        df[features] = scaler.fit_transform(df[features])
+
+
+
+
+@dataclass
+class Data:
+    data : pd.DataFrame
+    scaling_type : ScalingData
+    save_scaling_parameters : Optional[SaveScalerParameters] = None
+
+    def scale_features(self):
+        """scale the features in the dataframe"""
+        if self.save_scaling_parameters is not None:
+            self.save_scaling_parameters
+
+
+
+scaler = joblib.load(os.path.join(PARAMETERS_OUTPUT,'min_max_scaler.bin'))
+df.iloc[:,2:] = scaler.transform(df.iloc[:,2:])
+ohe = OneHotEncoder(drop='first',sparse=False,dtype=int)
+ohe_scaler = ohe.fit(df['Gender'].values.reshape(-1,1))
+joblib.dump(ohe_scaler,os.path.join(PARAMETERS_OUTPUT,"ohe_scaler.bin"))
+df['Gender'] = ohe_scaler.transform(df[['Gender']])
+
+# min-max scale the continuous data
+min_max = MinMaxScaler()
+min_max_scaler = min_max.fit(df.iloc[:,2:])
+df.iloc[:,2:] = min_max_scaler.transform(df.iloc[:,2:])
+joblib.dump(min_max_scaler,os.path.join(PARAMETERS_OUTPUT,"min_max_scaler.bin"))
+#df_results.iloc[:,2:] = min_max_scaler.fit_transform(df_results.iloc[:,2:])
+
+
+
+- Data storage and retrieval
+    - How will I get the data (own data, third party licensing, scraping)
+    - How will I receive the data (batch, real-time)
+    - How will I store the data (on premise -- own computer, cloud storage, hybrid)
+    - How much data do i have now and the scalability
+- Data
+    - Is the data that I have (look in Releases #1) relevant to reliably segmenting customers. The considered features are customer behaviours, in the context of Malls:
+        - do we have card information
+        - purchase history
+        - customer timeline (if takes a student loan, after completion, they may want a loan for a car / house -- Cross-selling)
+        - What are the results of previous marketing exercises
+        - The type of products previously bought
+        - rejected cards
+        - factors that influence behaviour (trends, group-think, season influence, )
+        - leaving before finishing the basket
+        Could have a rule-based system for specific customer behaviours like an easier way to put in personal information, one-click buy.
+        If relying on demographic information, does the individual follow with the average of the group / groups in general (outlier)
+- Framework and tooling
+    - How will the inference be done (real-time, )
+    - Due to the cha
+- Feedback and iteration
+- Business context
+    - The need to monitor the success of the marketing strategies to see if working.
+- marketing strategy
+    - where is the interface for interaction (if internet, PPC might be better compared to other tactics like e-mail)
+
+
+
+
+- BACKGROUND 
+- what (relevant information, previous or current approaches, competitive landscape, internal studies, known obstacles)
+    - possible solutions:
+        - rule-based system -- The problems associated is that it puts our assumption in the grouping of the data rather than
+        patterns that are present in the data. The purpose is find groupings of customers that as similar as possible, using a rule-based system is a method that is likely to result in large and varying variation. <!-- would be good to include images-->
+
+
+RELEVANCE:
+
+Creating segmentation of the customer base allows the business to have a clearer picture of the type of customers
+that interact with their product/s. Referencing a <b>Customer Journey Map</b>,with the entities of 'Awareness' -> 'Consideration'
+-> 'Decision' -> 'Delivery' -> 'Loyalty and Advocation', customer segmentation aids in the identification of the type of customers
+that are already interested in the product/service that can help with marketing solutions ('Consideration') and the identifying of 
+the actions taken by customers after use with product/service ('Loyalty and Advocation').
+
+
+
+
+
+<!--- me - is that i want to do this as a project to complete the job of clustering
+- business value -- we are a significantly smaller company in our market. The proposed situation is by strengthening
+customer loyalty by having specialised personalised marketing. Why is this important compared to other projects -- because the need for repeating customers is 
+crucial for our business, while competing with companies with bigger budgets. By having specialised content (more likely to have an emotional call for action), they 
+are likely to purchase more of our goods.what other problems are in the backlog -- i do n0t know.-->
+
+
+    - End-to-end utility: the end result from every iteration should deliver minimum end-to-end utility so that we can benchmark iterations against each other and plug-and-play with the system.
+    - Keep it simple (KISS): start from the simplest solution and slowly add complexity with justification along the way → baselines.
+    - Manual before ML: incorporate deterministic components where we define the rules before using probabilistic ones that infer rules from data.
+    - Augment vs. automate: allow the system to supplement the decision making process as opposed to making the final decision.
+    - Internal vs. external: not all early releases have to be end-user facing. We can use early versions for internal validation, feedback, data collection, etc.
+    - Thorough: every approach needs to be well tested (code, data + models) and evaluated, so we can objectively benchmark different approaches.
