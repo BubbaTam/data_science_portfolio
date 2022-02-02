@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <center>
             <h1> Classification for a Customer</h1>
+
             <form method="POST",  action="{{url_for('predict')}}">
                 <label for="ID">Customer ID:</label><br>
                 <input type="number" id="pdfd" name="ID"><br>
@@ -20,20 +22,15 @@
 
                 <label for="Spending">Spending Score (1-100):</label><br>
                 <input type="number" id="Spending_score" name="Spending_score" min="0" max="100"><br>
-                <br>
+
                 <input type="submit" value="Submit"><br>
             </form>
+
             <br>
             <br>
-            {% if prediction %}
-            <p>For the customer with:</p>
-            <ul>
-                <li>Gender -- {{gender_input}}</li>
-                <li>Age -- {{age_input}}</li>
-                <li>Income -- {{income_input}}</li>
-                <li>Spending Score -- {{spending_input}}</li>
-            </ul>
-            <p>The cluster group is {{prediction}}</p>
+            {% if inputs %}
+            <p>For the customer with {{inputs}}, the cluster group is {{prediction}}</p>
             {% endif %}
+        </center>
     </body>
 </html>
