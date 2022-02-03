@@ -28,12 +28,8 @@ class FeatureIdentification():
     nominal_feat : list = None
     ordinal_feat : list = None
 
-
-
-
-
-
-
-
-
-
+    def clean_instance_variables(self):
+        for key in self.__dict__:
+            if self.__dict__[key] is not None:
+                self.__dict__[key] = [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
+                                .replace("(","").replace(")","").replace("$","") for _ in self.__dict__[key]]
