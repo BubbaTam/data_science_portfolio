@@ -6,6 +6,11 @@ from src.config import MODEL_OUTPUT, PARAMETERS_OUTPUT
 from flask import Flask, render_template,jsonify, request
 
 
+# NEED TO Test
+# - test when no inputs
+# - changes to models / route to using different models
+
+
 flask_app = Flask(__name__)
 
 model = joblib.load(os.path.join(MODEL_OUTPUT,'kmeans_model.pkl'))
@@ -37,7 +42,13 @@ def predict():
     df.iloc[:,1:] = scaler.transform(df.iloc[:,1:])
 
     prediction = model.predict(df)
-    return render_template("home.html", inputs = values, prediction = prediction)
+    return render_template("home.html",
+                            inputs = values,
+                            gender_input = gender_input,
+                            age_input = age_input,
+                            income_input = income_input,
+                            spending_input = spending_input,
+                            prediction = prediction)
 
 @flask_app.route("/predict_API",methods=["POST"])
 def predict_API():
