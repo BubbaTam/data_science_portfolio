@@ -33,3 +33,14 @@ class FeatureIdentification():
             if self.__dict__[key] is not None:
                 self.__dict__[key] = [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
                                 .replace("(","").replace(")","").replace("$","") for _ in self.__dict__[key]]
+
+class RawDataCleaning():
+    def clean_df_columns(dataframe):
+        """[current iteration replaces spaces, dashes, question mark, slashes, percentage and brackets with space
+        and dollar symbol with space]
+
+        Args:
+            dataframe ([pandas dataframe])
+        """
+        dataframe.columns = [column.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
+                                    .replace("(","").replace(")","").replace("$","") for column in dataframe.columns]
