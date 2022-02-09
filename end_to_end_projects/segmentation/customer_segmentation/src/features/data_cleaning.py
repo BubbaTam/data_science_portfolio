@@ -21,6 +21,8 @@ from dataclasses import dataclass
 
 @dataclass
 class FeatureIdentification():
+    """ A collection of the feature types. The plan is to use this to make the process of data feature easier.
+        I should be able to sub """
     features : list = None
     independent_feat : list = None
     dependent_feat : str = None
@@ -33,7 +35,6 @@ class FeatureIdentification():
             if self.__dict__[key] is not None:
                 self.__dict__[key] = [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
                                 .replace("(","").replace(")","").replace("$","") for _ in self.__dict__[key]]
-
 class RawDataCleaning():
     def clean_df_columns(dataframe):
         """[current iteration replaces spaces, dashes, question mark, slashes, percentage and brackets with space
