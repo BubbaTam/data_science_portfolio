@@ -20,15 +20,82 @@ from joblib import dump
 from dataclasses import dataclass
 
 class ScaleData(ABC):
-
+    """ An interface for scaling numerical data """
     @abstractmethod
     def scale_numerical_data(self):
         """ scale the data for a feature"""
 
 class OrdinalEncoding(ABC):
+    """ An interface for transforming ordinal data """
     @abstractmethod
     def map_ordinal(self):
-        """ an interface for mapping ordinal data """
+        """ transform ordinal data """
+
+@dataclass
+class MinMaxScalerParameters(ScaleData):
+
+    data : list # to change this to a customisable typing
+    range: tuple = (0,1)
+
+    def scale_numerical_data(self,headers,save_scaler_parameter : bool = False):
+        """
+        [an implementation of ScaleData that uses MinMaxScaler to scale
+        a pandas dataframe with relevant column headers by the instantiated range]
+
+        Args:
+            headers ([list]): [The features of the pandas dataframe to be scaled]
+            save_scaler_parameter (bool, optional): [Send the parameters of the scaler to save_entities folder]. Defaults to False.
+        """
+        scaler = MinMaxScaler(feature_range=self.range)
+        scaler_parameters = scaler.fit(self.data[headers])
+        scaled_features = scaler_parameters.transform(self.data[headers])
+        self.data[headers] = scaled_features
+        if save_scaler_parameter is not False:
+            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"min_max_scale.bin"))
+
+@dataclass
+class Standardisation(ScaleData):
+
+    data : list # to change this to a customisable typing
+
+    def scale_numerical_data(self,headers,save_scaler_parameter : bool = False):
+        """
+        [an implementation of ScaleData that uses StandardScaler to scale
+        a pandas dataframe with relevant column headers]
+
+        Args:
+            headers ([list]): [The features of the pandas dataframe to be scaled]
+            save_scaler_parameter (bool, optional): [description]. Defaults to False.
+        """
+        scaler = StandardScaler()
+        scaler_parameters = scaler.fit(self.data[headers])
+        scaled_features = scaler_parameters.transform(self.data[headers])
+        self.data[headers] = scaled_features
+        if save_scaler_parameter is not False:
+            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"standardisation.bin"))
+
+@dataclass
+class Normalisation(ScaleData):
+
+    data : list =  None # to change this to a customisable typing
+
+    def scale_numerical_data(self,headers,save_scaler_parameter : bool = False):
+        """
+        [An implementation of ScaleData that uses Normalizer to scale
+        a pandas dataframe with relevant column headers]
+
+        Args:
+            headers ([list]): [The features of the pandas dataframe to be scaled]
+            save_scaler_parameter (bool, optional): [Send the parameters of the scaler to save_entities folder]. Defaults to False.
+        """
+        scaler = Normalizer()
+        scaler_parameters = scaler.fit(self.data[headers])
+        scaled_features = scaler_parameters.transform(self.data[headers])
+        self.data[headers] = scaled_features
+        if save_scaler_parameter is not False:
+            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"normalisation.bin"))
+        return scaled_features
+
 
 @dataclass
 class FeatureIdentification():
