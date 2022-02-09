@@ -19,6 +19,17 @@ from typing import Optional
 from joblib import dump
 from dataclasses import dataclass
 
+class ScaleData(ABC):
+
+    @abstractmethod
+    def scale_numerical_data(self):
+        """ scale the data for a feature"""
+
+class OrdinalEncoding(ABC):
+    @abstractmethod
+    def map_ordinal(self):
+        """ an interface for mapping ordinal data """
+
 @dataclass
 class FeatureIdentification():
     """ A collection of the feature types. The plan is to use this to make the process of data feature easier.
