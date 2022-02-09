@@ -46,12 +46,15 @@ class MinMaxScalerParameters(ScaleData):
             headers ([list]): [The features of the pandas dataframe to be scaled]
             save_scaler_parameter (bool, optional): [Send the parameters of the scaler to save_entities folder]. Defaults to False.
         """
-        scaler = MinMaxScaler(feature_range=self.range)
-        scaler_parameters = scaler.fit(self.data[headers])
-        scaled_features = scaler_parameters.transform(self.data[headers])
-        self.data[headers] = scaled_features
-        if save_scaler_parameter is not False:
-            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"min_max_scale.bin"))
+        if isinstance(self.data, pd.DataFrame): # not sure about this yet
+            scaler = MinMaxScaler(feature_range=self.range)
+            scaler_parameters = scaler.fit(self.data[headers])
+            scaled_features = scaler_parameters.transform(self.data[headers])
+            self.data[headers] = scaled_features
+            if save_scaler_parameter is not False:
+                dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"min_max_scale.bin"))
+        else:
+            raise("The input needs to be a pandas dataframe")
 
 @dataclass
 class Standardisation(ScaleData):
@@ -67,12 +70,15 @@ class Standardisation(ScaleData):
             headers ([list]): [The features of the pandas dataframe to be scaled]
             save_scaler_parameter (bool, optional): [description]. Defaults to False.
         """
-        scaler = StandardScaler()
-        scaler_parameters = scaler.fit(self.data[headers])
-        scaled_features = scaler_parameters.transform(self.data[headers])
-        self.data[headers] = scaled_features
-        if save_scaler_parameter is not False:
-            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"standardisation.bin"))
+        if isinstance(self.data, pd.DataFrame): # not sure about this yet
+            scaler = StandardScaler()
+            scaler_parameters = scaler.fit(self.data[headers])
+            scaled_features = scaler_parameters.transform(self.data[headers])
+            self.data[headers] = scaled_features
+            if save_scaler_parameter is not False:
+                dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"standardisation.bin"))
+        else:
+            raise("The data needs to be a pandas dataframe")
 
 @dataclass
 class Normalisation(ScaleData):
@@ -88,14 +94,40 @@ class Normalisation(ScaleData):
             headers ([list]): [The features of the pandas dataframe to be scaled]
             save_scaler_parameter (bool, optional): [Send the parameters of the scaler to save_entities folder]. Defaults to False.
         """
-        scaler = Normalizer()
-        scaler_parameters = scaler.fit(self.data[headers])
-        scaled_features = scaler_parameters.transform(self.data[headers])
-        self.data[headers] = scaled_features
-        if save_scaler_parameter is not False:
-            dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"normalisation.bin"))
-        return scaled_features
+        if isinstance(self.data, pd.DataFrame): # not sure about this yet
+            scaler = Normalizer()
+            scaler_parameters = scaler.fit(self.data[headers])
+            scaled_features = scaler_parameters.transform(self.data[headers])
+            self.data[headers] = scaled_features
+            if save_scaler_parameter is not False:
+                dump(scaler_parameters,os.path.join(PARAMETERS_OUTPUT,"normalisation.bin"))
+        else:
+            raise("The data needs to be a pandas dataframe")
 
+@dataclass
+class MapGender(OrdinalEncoding):
+    """ To transform the gender feature in a pandas dataframe """
+
+    data : list =  None # to change this to a customisable typing
+
+    def map_ordinal(self,header : str,save_scaler_parameter : bool = False):
+        """
+        [An implementation of OrdinalEncoding that transforms
+        a pandas dataframe with relevant column headers]
+
+        Args:
+            header (list): [The features of the pandas dataframe to be transformed]
+            save_scaler_parameter (bool, optional): [Send the parameters of the scaler to save_entities folder]. Defaults to False.
+        """
+        if isinstance(self.data, pd.DataFrame): # not sure about this yet
+            transformer = LabelEncoder()
+            transformer_parameters = transformer.fit(self.data[header])
+            transformed_features = transformer_parameters.transform(self.data[header])
+            self.data[header] = transformed_features
+            if save_scaler_parameter is not False:
+                dump(transformer_parameters,os.path.join(PARAMETERS_OUTPUT,"gender_transformer.bin"))
+        else:
+            raise("The data needs to be a pandas dataframe")
 
 @dataclass
 class FeatureIdentification():
