@@ -131,8 +131,10 @@ class MapGender(OrdinalEncoding):
 
 @dataclass
 class FeatureIdentification():
-    """ A collection of the feature types. The plan is to use this to make the process of data feature easier.
-        I should be able to sub """
+    """
+    [A collection of the feature types. The plan is to use this to make the process of data features easier.
+    I should be able to sub]
+    """
     features : list = None
     independent_feat : list = None
     dependent_feat : str = None
@@ -141,13 +143,30 @@ class FeatureIdentification():
     ordinal_feat : list = None
 
     def clean_instance_variables(self):
+        """
+        [Goes through all attributes and cleans by replacing spaces, dashes, question mark, slashes, percentage and brackets with space
+        and dollar symbol with space]
+        """
         for key in self.__dict__:
             if self.__dict__[key] is not None:
                 self.__dict__[key] = [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
                                 .replace("(","").replace(")","").replace("$","") for _ in self.__dict__[key]]
-class RawDataCleaning():
+
+@dataclass
+class DataCleaning():
+    features : Optional[FeatureIdentification] = None
+    scale_numerical_features : Optional[ScaleData] = None
+    ordinal_encoding : Optional[OrdinalEncoding] = None
+    dataframe = None
+
+    # look into
+    #def scale_numerical(self,dataframe):
+    #    dataframe[self.features.nominal_feat] = self.scale_numerical_features.scale_numerical_data(dataframe[self.features.nominal_feat],dataframe)
+
+    @staticmethod
     def clean_df_columns(dataframe):
-        """[current iteration replaces spaces, dashes, question mark, slashes, percentage and brackets with space
+        """
+        [current iteration replaces spaces, dashes, question mark, slashes, percentage and brackets with space
         and dollar symbol with space]
 
         Args:
