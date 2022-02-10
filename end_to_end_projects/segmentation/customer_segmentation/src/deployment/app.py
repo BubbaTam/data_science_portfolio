@@ -14,6 +14,8 @@ from flask import Flask, render_template,jsonify, request
 flask_app = Flask(__name__)
 
 model = joblib.load(os.path.join(MODEL_OUTPUT,'kmeans_model.pkl'))
+min_max_scaler = joblib.load(os.path.join(PARAMETERS_OUTPUT,'min_max_scaler.bin'))
+gender_transformer = joblib.load(os.path.join(PARAMETERS_OUTPUT,'gender_transformer.bin'))
 
 
 @flask_app.route("/")
@@ -34,12 +36,12 @@ def predict():
 
 
     # data preprocessing
+    ## input data into a dataframe
     df = pd.DataFrame({'gender':[gender_input],'age':[age_input],'annual_income_(k$)':[income_input],'spending_score_(1-100)':[spending_input]})
-    gender_mapping = {'Female':0,'Male':1}
-    df.gender = df.gender.replace(gender_mapping)
-
-    scaler = joblib.load(os.path.join(PARAMETERS_OUTPUT,'min_max_scaler.bin'))
-    df.iloc[:,1:] = scaler.transform(df.iloc[:,1:])
+    ## transform gender to integers from the original string
+    df.iloc[:,0] = gender_transformer.transform(df.iloc[:,0])
+    ## scale numerical features to between 0 and 1
+    df.iloc[:,1:] = min_max_scaler.transform(df.iloc[:,1:])
 
     prediction = model.predict(df)
     return render_template("home.html",
