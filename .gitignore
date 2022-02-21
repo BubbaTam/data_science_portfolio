@@ -133,3 +133,6 @@ settings.json
 
 #datafiles
 data_sources/
+
+#private files
+config_priv.py
