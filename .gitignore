@@ -130,3 +130,6 @@ dmypy.json
 
 #json
 settings.json
+
+#datafiles
+data_sources/
