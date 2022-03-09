@@ -40,7 +40,7 @@ DECISIONS:
 
 
 CONCERNS:
-<!-- (potential risks, concerns and uncertainties)>
+<!-- (potential risks, concerns and uncertainties) -->
 
 
 additional:
