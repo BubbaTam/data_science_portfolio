@@ -2,7 +2,7 @@
 DRI is @BubbaTam
 
 **OVERVIEW**
-<!-- set scope for the purpose of this iteration>
+<!-- set scope for the purpose of this iteration -->
 
 
 RELEVANCE:
@@ -44,4 +44,3 @@ CONCERNS:
 
 
 additional:
-
