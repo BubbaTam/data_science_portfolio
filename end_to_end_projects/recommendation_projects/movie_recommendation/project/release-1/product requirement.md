@@ -1,7 +1,8 @@
 <!-- [Product] what and why-->
 DRI is @BubbaTam
 
-**OVERVIEW** <!-- set scope for the purpose of this iteration>
+**OVERVIEW**
+<!-- set scope for the purpose of this iteration>
 
 
 RELEVANCE:
@@ -28,7 +29,8 @@ CONSTRAINTS:
 INTEGRATION:
 <!-- - (the dependencies and consumers to integrate, own company (different systems, teams, conflicts)) -->
 
-**REQUIREMENTS:** <!-- (table -- requirements/priority/release/status, out of scope)-these link to deliverables>  --> 
+**REQUIREMENTS:**
+<!-- (table -- requirements/priority/release/status, out of scope)-these link to deliverables>  -->
 
 
 OUT OF SCOPE:
@@ -37,7 +39,8 @@ OUT OF SCOPE:
 DECISIONS:
 
 
-CONCERNS: <!-- (potential risks, concerns and uncertainties)>
+CONCERNS:
+<!-- (potential risks, concerns and uncertainties)>
 
 
 additional:
