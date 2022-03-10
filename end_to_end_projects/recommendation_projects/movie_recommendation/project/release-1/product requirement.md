@@ -1,6 +1,7 @@
+# Product Requirements
 <!-- [Product] what and why-->
-DRI is @BubbaTam
-
+*DRI is @BubbaTam*
+---------------------------------------
 **OVERVIEW**
 <!-- set scope for the purpose of this iteration -->
 
