@@ -11,7 +11,6 @@ and value.
 |[Customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
 |[Telco customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
 |[How to Get Arsenal FC back into the Champions League](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)|Complete|EDA, Communication | Blog post in development |
-|
 
 Scoped skills:
 
