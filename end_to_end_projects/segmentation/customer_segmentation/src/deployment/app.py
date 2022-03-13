@@ -34,9 +34,7 @@ def predict():
     spending_input = request.form["Spending_score"]
 
     values_orig = [ID_data,gender_input,age_input,income_input,spending_input]
-    values = [value for value in values_orig if value is not '']
-    #values = [ID_data,gender_input,age_input,income_input,spending_input]
-
+    values = [value for value in values_orig if value != '']
 
     # data preprocessing
     ## input data into a dataframe
@@ -59,32 +57,14 @@ def predict():
 def predict_api():
     """ to input a json data and to predict from the model"""
     if request.method == "GET":
-        return "hello"
+        return render_template('home.html')
     if request.method == "POST":
         content = request.get_json()
-
-        #the list
-        list_version = content['data']
-        #convert to a matrix
-        matrix_version = np.matrix(list_version)
-
-
-        # NOT THE SAME VALUE AS BEFORE
+        df = pd.read_json(content)
         ## transform gender to integers from the original string
-        matrix_version[:,0] = gender_transformer.transform(matrix_version[:,0])
+        df.iloc[:,0] = gender_transformer.transform(df.iloc[:,0])
         ## scale numerical features to between 0 and 1
-        matrix_version[:,1:] = min_max_scaler.transform(matrix_version[:,1:])
+        df.iloc[:,1:] = min_max_scaler.transform(df.iloc[:,1:])
+        prediction = model.predict(df)
 
-        prediction = model.predict(matrix_version)
-
-        result = prediction[0]
-        #data = [np.array(list(jsonify.loads(r.text).values()))]
-        #df = pd.DataFrame({'gender':[gender_input],'age':[age_input],'income':[income_input],'spending_score_(1-100)':[spending_input]})
-        return jsonify(result)
-        #gender_input = content["Gender"]
-        #age_input = content["Age"]
-        #income_input = content["Annual Income (k$)"]
-        #spending_input = content["Spending Score (1-100)"]
-        #return gender_input,age_input,income_input,spending_input
-
-flask_app.run(debug=True)
+        return str(prediction)
