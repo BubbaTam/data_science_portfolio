@@ -7,7 +7,7 @@ and value.
 
 | Project | Status | Skills | Additional |
 | ----| ---- | ----| ---- |
-|[Movie recommendation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/recommendation_projects/movie_recommendation)|basic model complete| | |
+|[Movie recommendation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/recommendation_projects/movie_recommendation)|basic API complete| | |
 |[Customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
 |[Telco customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
 |[How to Get Arsenal FC back into the Champions League](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)|Complete|EDA, Communication | [Brief post](https://jamesglassey.com/portfolio-2/how-to-fix-arsenal-fc-brief/?preview_id=403&preview_nonce=9e9c500456&preview=true&_thumbnail_id=424), technical post -- development |
