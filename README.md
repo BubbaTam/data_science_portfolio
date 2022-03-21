@@ -15,7 +15,7 @@ and value.
 Scoped skills:
 | Problem Case | Concepts and Techniques | Additional |
 | ---- | ----| ---- |
-| Unsupervised | [Elbow Method](https://github.com/BubbaTam/data_science_portfolio/blob/575d546ec45ab37f775fb27269ec2eff789d8052/scoped_skills/unsupervised_methods/clustering_algo_overview.ipynb) | |
+| Unsupervised | [Elbow Method](https://github.com/BubbaTam/data_science_portfolio/blob/575d546ec45ab37f775fb27269ec2eff789d8052/scoped_skills/unsupervised_methods/clustering_algo_overview.ipynb) | Blog post -- in progress|
 
 
 SQL
