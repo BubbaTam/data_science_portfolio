@@ -7,11 +7,15 @@ and value.
 
 | Project | Status | Skills | Additional |
 | ----| ---- | ----| ---- |
-|[Movie recommendation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/recommendation_projects/movie_recommendation)|basic API complete| | |
+|[Movie recommendation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/recommendation_projects/movie_recommendation)|Basic API complete| | |
 |[Customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
 |[Telco customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
-|[How to Get Arsenal FC back into the Champions League](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)|Complete|EDA, Communication, Tableau | [Blog post --context](https://jamesglassey.com/portfolio-2/how-to-get-arsenal-back-into-the-champions-league/), [Tableau dashboard](https://public.tableau.com/views/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link) |
+|[How to Get Arsenal FC back into the Champions League ](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)| <input type="checkbox" checked>Complete|EDA, Communication, Tableau | [Blog post](https://jamesglassey.com/portfolio-2/how-to-get-arsenal-back-into-the-champions-league/) |
 
 Scoped skills:
+| Problem Case | Concepts and Techniques | Additional |
+| ---- | ----| ---- |
+| Unsupervised | [Elbow Method](https://github.com/BubbaTam/data_science_portfolio/blob/575d546ec45ab37f775fb27269ec2eff789d8052/scoped_skills/unsupervised_methods/clustering_algo_overview.ipynb) | |
+
 
 SQL
