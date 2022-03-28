@@ -1,35 +1,18 @@
-PRODUCT: <!--[what and why] -->
+<h1>Overview</h1>
 
-The project is a solution to address the business problem of customer segmentation by using
-unsupervised Machine Learning techniques.The aim is to use a clustering algorithm to group
-similarly characterised customers with the hopes of creating a personalised marketing
-strategy for each customer segmentation.
-<!--unsupervised technique of clustering. Alternatives to using ML to segment customer data:-->
-RELEVANCE:
+<h2>Company</h2>
+- N/A
+<h2>PRODUCT:</h2> <!--[what and why] -->
 
-Creating segmentation of the customer base allows the business to have a clearer picture of the type of customers
-that interact with their product/s. Referencing a <b>Customer Journey Map</b>,with the entities of 'Awareness' -> 'Consideration'
--> 'Decision' -> 'Delivery' -> 'Loyalty and Advocation', customer segmentation aids in the identification of the type of customers
-that are already interested in the product/service that can help with marketing solutions ('Consideration') and the identifying of 
-the actions taken by customers after use with product/service ('Loyalty and Advocation').
-BACKGROUND:
+The project addresses the business problem of finding value within the customer database. A solution is to find similarly characterised customers and cluster them within a group; this allows the business to more efficiently find insight by focusing on each cluster segmentation rather than the entire customer database. The model output is applicable for further exploration by creating personalised marketing strategies for each customer cluster.
 
-RELEASES:
-<!-- - [x] #1 will be a basic model that clusters the customers based on the features of gender, age, annual income, and spending score. The clustering will partition the customers, meaning all customers are placed in a group. -->
-CONCERNS:
+<h2>RELEASES:</h2>
+- <input type="checkbox" unchecked> Version #1:
+<br>
+Version 1 is a prototype (basic model) that uses a static dataset with the features of gender, age, annual income, and spending score. The cluster method will use a partitioning algorithm such as k-means clustering, Affinity propagation and Agglomerative clustering. There will be an endpoint in the format of an API.
 
-
-OBJECTIVES:
-<!-- - (what are the key objectives to specific criteria/metrics) -->
-
-SOLUTIONS:
-<!-- - (what are the possible solutions that have been) -->
-
-FEASIBILITY
-<!-- - (think about dependencies and testing of hypotheses) -->
-
-CONSTRAINTS:
-<!-- - (SLAs {service-level agreements} with customers and internal system -- time, money, performance,latency, infrastructure, privacy,security, UI/UX) -->
-
-INTEGRATION:
-<!-- - (the dependencies and consumers to integrate, own company (different systems, teams, conflicts)) -->
+<h2>CONCERNS:</h2>
+<!-- stuff such as privacy, security, moderation, controversial decisions, -->
+- N/A
+<h2>Terms:</h2>
+- DRI (directly responsible individual) they have the responsibility on communicating feedback and updating their documents.
