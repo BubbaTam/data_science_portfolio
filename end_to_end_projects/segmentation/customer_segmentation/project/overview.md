@@ -10,9 +10,14 @@ The project addresses the business problem of finding value within the customer 
 - <input type="checkbox" unchecked> Version #1:
 <br>
 Version 1 is a prototype (basic model) that uses a static dataset with the features of gender, age, annual income, and spending score. The cluster method will use a partitioning algorithm such as k-means clustering, Affinity propagation and Agglomerative clustering. There will be an endpoint in the format of an API.
+<br>
+<br>
+- <input type="checkbox" unchecked> Version #1.1:
+<br>
+Version 1.1 is to add data input through a SQL database rather than version 1's static dataset.
 
 <h2>CONCERNS:</h2>
 <!-- stuff such as privacy, security, moderation, controversial decisions, -->
-- N/A
+- Is the the type of data used effective?
 <h2>Terms:</h2>
 - DRI (directly responsible individual) they have the responsibility on communicating feedback and updating their documents.
