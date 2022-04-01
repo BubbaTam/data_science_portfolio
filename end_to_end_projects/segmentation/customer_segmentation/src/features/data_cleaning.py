@@ -1,6 +1,7 @@
 #Possible to look at:
 # quality of life changes
 # missing data
+## what is the ideal way to indicate a pandas dataframe
 
 #current implementations
 
@@ -15,7 +16,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder,OrdinalEncoder,LabelEncoder ,MinMaxScaler, StandardScaler, Normalizer
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 from joblib import dump
 from dataclasses import dataclass
 
@@ -34,7 +35,7 @@ class OrdinalEncoding(ABC):
 @dataclass
 class MinMaxScalerParameters(ScaleData):
 
-    data : list # to change this to a customisable typing
+    data : pd.DataFrame # to change this to a customisable typing
     range: tuple = (0,1)
 
     def scale_numerical_data(self,headers,save_scaler_parameter : bool = False):
@@ -108,7 +109,7 @@ class Normalisation(ScaleData):
 class MapGender(OrdinalEncoding):
     """ To transform the gender feature in a pandas dataframe """
 
-    data : list =  None # to change this to a customisable typing
+    data : pd.DataFrame =  None # to change this to a customisable typing
 
     def map_ordinal(self,header : str,save_scaler_parameter : bool = False):
         """
@@ -127,7 +128,7 @@ class MapGender(OrdinalEncoding):
             if save_scaler_parameter is not False:
                 dump(transformer_parameters,os.path.join(PARAMETERS_OUTPUT,"gender_transformer.bin"))
         else:
-            raise("The data needs to be a pandas dataframe")
+            raise("The data needs to be a pandas Dataframe")
 
 @dataclass
 class FeatureIdentification():
@@ -135,12 +136,12 @@ class FeatureIdentification():
     [A collection of the feature types. The plan is to use this to make the process of data features easier.
     I should be able to sub]
     """
-    features : list = None
-    independent_feat : list = None
+    features : List[str] = None
+    independent_feat : List[str] = None
     dependent_feat : str = None
-    continuous_feat : list = None
-    nominal_feat : list = None
-    ordinal_feat : list = None
+    continuous_feat : List[str] = None
+    nominal_feat : List[str] = None
+    ordinal_feat : List[str] = None
 
     def clean_instance_variables(self):
         """
