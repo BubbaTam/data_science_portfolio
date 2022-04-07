@@ -150,8 +150,7 @@ class FeatureIdentification():
         """
         for key in self.__dict__:
             if self.__dict__[key] is not None:
-                self.__dict__[key] = [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
-                                .replace("(","").replace(")","").replace("$","") for _ in self.__dict__[key]]
+                self.__dict__[key] = DataCleaning.function_for_cleaning(self.__dict__[key])
 
 @dataclass
 class DataCleaning():
@@ -173,5 +172,9 @@ class DataCleaning():
         Args:
             dataframe ([pandas dataframe])
         """
-        dataframe.columns = [column.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
-                                    .replace("(","").replace(")","").replace("$","") for column in dataframe.columns]
+        dataframe.columns = DataCleaning.function_for_cleaning(dataframe.columns)
+    @staticmethod
+    def function_for_cleaning(iterable):
+        iterable =  [_.lower().replace(' ','_').replace("-","_").replace("?","_").replace("/","_").replace("\\","_").replace("%","_") \
+                                    .replace("(","").replace(")","").replace("$","") for _ in iterable]
+        return iterable
