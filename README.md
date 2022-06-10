@@ -9,7 +9,7 @@ and value.
 | ----| ---- | ----| ---- |
 |[Movie recommendation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/recommendation_projects/movie_recommendation)|Basic API complete| | |
 |[Customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
-|[Telco customer Segmentation](https://github.com/BubbaTam/data_science_portfolio/tree/main/end_to_end_projects/segmentation/customer_segmentation)|Development| | |
+|[Telco customer Segmentation](https://github.com/BubbaTam/telco-customer-churn)|Development| | |
 |[How to Get Arsenal FC back into the Champions League ](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)| <input type="checkbox" checked>Complete|EDA, Communication, Tableau | [Blog post](https://jamesglassey.com/portfolio-2/how-to-get-arsenal-back-into-the-champions-league/) |
 
 Scoped skills:
