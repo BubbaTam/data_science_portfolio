@@ -11,6 +11,7 @@ and value.
 |[Customer Segmentation](https://github.com/BubbaTam/customer_segmentation)|Development| | |
 |[Telco customer Segmentation](https://github.com/BubbaTam/telco-customer-churn)|Development| | |
 |[How to Get Arsenal FC back into the Champions League ](https://public.tableau.com/app/profile/jamesglassey/viz/HowtoFixArsenalFCA2018-2019SeasonSimulation/Dashboard1)| <input type="checkbox" checked>Complete|EDA, Communication, Tableau | [Blog post](https://jamesglassey.com/portfolio-2/how-to-get-arsenal-back-into-the-champions-league/) |
+|[Daily Tracker - Productivity Project](https://github.com/BubbaTam/productivity_project)| <input type="checkbox" checked> Developing Release 1 (Data Engineering) | SQL(mysql), Python, Data Engineering, ETL, Airflow,||
 
 Scoped skills:
 | Problem Case | Concepts and Techniques | Additional |
